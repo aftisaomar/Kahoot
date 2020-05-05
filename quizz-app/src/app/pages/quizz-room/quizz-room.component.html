@@ -1,0 +1,90 @@
+<div *ngIf="!reception && !fin" style="margin: auto;">
+
+  <h1> Le Quizz commence bientot</h1>
+   
+</div>
+
+
+<div *ngIf= "reception && !fin">
+          
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <mat-card  id = "contenu">{{question.contenu}}</mat-card>
+            </div>
+        </div>
+       
+        <div class="row">
+
+            <div class="col-sm-6">
+                <button  class="block"  (click)="answer(question.proposition1)">{{question.proposition1}}</button> 
+            </div>
+            
+            <div class="col-sm-6">
+                <button  class="block" (click)="answer(question.proposition2)">{{question.proposition2}}</button>
+            </div>
+
+        </div>
+
+        <div class="row" >
+
+            <div class="col-sm-12">    
+                <p id="time" style=" font-size: xx-large;"><countdown [config]="config"></countdown></p>
+            </div>
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-sm-6">
+                <button  class="block" (click)="answer(question.proposition3)">{{question.proposition3}}</button> 
+            </div>
+
+            <div class="col-sm-6">
+                <button  class="block" (click)="answer(question.proposition4)">{{question.proposition4}}</button> 
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="col-sm-12">
+                <p style="text-align: center;">SCORE : {{score}}/{{quizz.nbrQuestion}} </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Affichage des resultats de tout les joueurs -->
+<div style="margin:auto;" *ngIf="fin">
+    <table mat-table [dataSource]="tabResult" class="mat-elevation-z8" >
+
+        <ng-container matColumnDef="Position">
+        <th mat-header-cell *matHeaderCellDef> Position </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="Email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+    
+        <!-- Weight Column -->
+        <ng-container matColumnDef="Score">
+        <th mat-header-cell *matHeaderCellDef> Score </th>
+        <td mat-cell *matCellDef="let element"> {{element.score}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <button style="margin: auto;" mat-button color="primary" (click)="onReplay()">REJOUER</button>
+
+</div>
+
+

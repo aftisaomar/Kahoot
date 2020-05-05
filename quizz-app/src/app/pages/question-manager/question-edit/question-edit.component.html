@@ -1,0 +1,44 @@
+<form [formGroup]="questionEditForm" (ngSubmit)="onSave()">
+    <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="16px">
+        <mat-form-field>
+            <mat-label>Question</mat-label>
+            <input matInput placeholder="La question" formControlName="contenu">
+            <mat-error>Question requise</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Quizz</mat-label>
+            <mat-select formControlName="quizzId">
+                <mat-option *ngFor="let quizz of data.quizzes" [value]="quizz._id">
+                    {{quizz.titre}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Réponse</mat-label>
+            <input matInput placeholder="La réponse à la question" formControlName="reponse">
+            <mat-error>Réponse requise</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Proposition N°1</mat-label>
+            <input matInput placeholder="Proposition 1" formControlName="proposition1">
+            <mat-error>Réponse requise</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Proposition N°2</mat-label>
+            <input matInput placeholder="Proposition 2" formControlName="proposition2">
+            <mat-error>Réponse requise</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Proposition N°3</mat-label>
+            <input matInput placeholder="Proposition 3" formControlName="proposition3">
+            <mat-error>Réponse requise</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Proposition N°4</mat-label>
+            <input matInput placeholder="Proposition 4" formControlName="proposition4">
+            <mat-error>Réponse requise</mat-error>
+        </mat-form-field>
+        <h4 *ngIf="error" style="color: red;">{{errorMsg}}</h4>
+        <button mat-raised-button [disabled]="!questionEditForm.valid">Sauvegarder</button>
+    </div>
+</form>

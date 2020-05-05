@@ -1,0 +1,16 @@
+<form [formGroup]="quizzEditForm" (ngSubmit)="onSave()">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
+        <mat-form-field>
+            <mat-label>Titre</mat-label>
+            <input matInput placeholder="Le titre du quizz" formControlName="titre">
+            <mat-error>Titre requis</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="La description du quizz" formControlName="description">
+            <mat-error>Description requise</mat-error>
+        </mat-form-field>
+        <h4 *ngIf="error" style="color: red;">{{errorMsg}}</h4>
+        <button mat-raised-button [disabled]="!quizzEditForm.valid">Sauvegarder</button>
+    </div>
+</form>

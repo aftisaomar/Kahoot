@@ -1,0 +1,24 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="mat-elevation-z5">
+      <button *ngIf="userStatus.isAdmin" mat-button routerLink="quizz-manager">
+        <mat-icon>question_answer</mat-icon> Quizzes
+      </button>
+      <button *ngIf="userStatus.isAdmin" mat-button routerLink="question-manager">
+        <mat-icon>help</mat-icon> Questions
+      </button>
+      <span class="spacer"></span>
+      <button *ngIf="userStatus.isLoggedIn" mat-button [matMenuTriggerFor]="menu" style="padding: 0;">
+        <mat-icon>account_circle</mat-icon> {{userStatus.email}}
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onLogout()">
+          <span>Déconnexion</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

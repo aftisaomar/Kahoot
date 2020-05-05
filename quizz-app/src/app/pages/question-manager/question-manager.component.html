@@ -1,0 +1,30 @@
+<div style="height: 85vh;">
+    <mat-card class="header-card mat-elevation-z0">
+        <mat-card-content>
+            <h1 fxLayout="row">Liste des Questions
+                <span [matBadge]="questions.length" matBadgeColor="primary" [matBadgeOverlap]="false"></span>
+            </h1>
+        </mat-card-content>
+    </mat-card>
+    <button mat-raised-button color="primary" style="margin: 16px 16px;" (click)="onShowAddQuestion()">
+        <mat-icon>add</mat-icon>Ajouter
+    </button>
+    <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="16px">
+        <ng-container *ngFor="let question of questions; let i = index;">
+            <mat-card class="custom-card">
+                <mat-card-header>
+                    <div mat-card-avatar>
+                        <mat-icon style="font-size: 48px; color:dodgerblue">help</mat-icon>
+                    </div>
+                    <mat-card-title>{{question.contenu}} ~ {{question.createdAt | date}}</mat-card-title>
+                    <mat-card-subtitle>{{question.updatedAt | date}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-actions style="display: flex;">
+                    <button mat-button style="color: dodgerblue" (click)="onShowEditQuestion(i)">Éditer</button>
+                    <span class="spacer"></span>
+                    <button mat-button color="warn" (click)="onDeleteQuestion(i)">Supprimer</button>
+                </mat-card-actions>
+            </mat-card>
+        </ng-container>
+    </div>
+</div>

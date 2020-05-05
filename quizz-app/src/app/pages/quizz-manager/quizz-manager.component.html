@@ -1,0 +1,17 @@
+<div style="height: 85vh;">
+    <mat-card class="header-card mat-elevation-z0">
+        <mat-card-content>
+            <h1 fxLayout="row">Liste des quizzes
+                <span [matBadge]="quizzes.length" matBadgeColor="warn" [matBadgeOverlap]="false"></span>
+            </h1>
+        </mat-card-content>
+    </mat-card>
+    <button mat-raised-button color="primary" style="margin: 16px 16px;" (click)="onShowAddQuizz()">
+        <mat-icon>add</mat-icon>Ajouter
+    </button>
+    <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="16px">
+        <app-quizz *ngFor="let quizz of quizzes; let i = index;" [quizz]="quizz" [quizzIndex]="i"
+            (quizzDeleted)="onQuizzDeleted($event)"
+            (quizzUpdated)="onQuizzUpdated($event)"></app-quizz>
+    </div>
+</div>
